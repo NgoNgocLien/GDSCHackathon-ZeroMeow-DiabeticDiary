@@ -1,4 +1,4 @@
-package com.example.fourapps.ui.theme
+package com.example.diabeticdiary.ui.theme
 
 import android.app.Activity
 import android.os.Build

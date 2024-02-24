@@ -1,4 +1,4 @@
-package com.example.fourapps
+package com.example.diabeticdiary
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.diabeticdiary.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TipCalculatorFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ScanFragment : Fragment() {
+class TipCalculatorFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -38,12 +39,39 @@ class ScanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scan, container, false)
+        return inflater.inflate(R.layout.fragment_tip_calculator, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val billAmountET = view.findViewById<EditText>(R.id.billAmountEditText)
+        val tipPercentageET = view.findViewById<EditText>(R.id.tipPercentEditText)
+        val numberOfPeopleET = view.findViewById<EditText>(R.id.numberOfPeopleEditText)
 
+        val calculateTipButton = view.findViewById<Button>(R.id.calculateTipButton)
+
+        val billAmountResultValueTV = view.findViewById<TextView>(R.id.billAmountResultValueTextView)
+        val totalAmountValueTV = view.findViewById<TextView>(R.id.totalAmountValueTextView)
+        val totalPerPersonValueTV = view.findViewById<TextView>(R.id.totalPerPersonValueTextView)
+
+        calculateTipButton.setOnClickListener {
+            if (billAmountET.text.toString().isEmpty() || tipPercentageET.text.toString().isEmpty() || numberOfPeopleET.text.toString().isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter all values", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val billAmount = billAmountET.text.toString().toDouble()
+            val tipPercentage = tipPercentageET.text.toString().toDouble()
+            val numberOfPeople = numberOfPeopleET.text.toString().toDouble()
+
+            val tipAmount = billAmount * tipPercentage / 100
+            val totalAmount = billAmount + tipAmount
+            val totalPerPerson = totalAmount / numberOfPeople
+
+            billAmountResultValueTV.text = String.format("$%.2f", billAmount)
+            totalAmountValueTV.text = String.format("$%.2f", totalAmount)
+            totalPerPersonValueTV.text = String.format("$%.2f", totalPerPerson)
+        }
     }
 
     companion object {

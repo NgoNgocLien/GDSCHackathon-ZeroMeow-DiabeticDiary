@@ -1,4 +1,4 @@
-package com.example.fourapps
+package com.example.diabeticdiary
 
 import org.junit.Test
 

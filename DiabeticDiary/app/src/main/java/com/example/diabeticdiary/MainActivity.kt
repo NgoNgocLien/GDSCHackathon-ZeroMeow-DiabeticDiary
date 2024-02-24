@@ -1,11 +1,17 @@
-package com.example.fourapps
+package com.example.diabeticdiary
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.diabeticdiary.R
 
 class MainActivity : AppCompatActivity() {
+    private val fbManager = FBManager()
+    private lateinit var user: User
+    private var productList: List<Product> = emptyList()
+    private var mealList: List<Meal> = emptyList()
+
     private var homeButton: Button? = null
     private var statisticButton: Button? = null
     private var searchButton: Button? = null
@@ -20,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initDB()
         setContentView(R.layout.activity_main)
 
         homeButton = findViewById(R.id.home_icon)
@@ -61,6 +68,26 @@ class MainActivity : AppCompatActivity() {
             changeTabColor(profileButton!!, profileTextView!!)
             supportFragmentManager.beginTransaction().replace(R.id.frame_layout, FlashlightFragment()).addToBackStack(null).commit()
         }
+    }
+
+    private fun initDB(){
+        fbManager.setUserCallback { user ->
+            if (user != null) {
+                this@MainActivity.user = user
+            }
+        }
+
+        fbManager.setProductListCallback { productList ->
+            this@MainActivity.productList = productList
+        }
+
+//        fbManager.writeProduct("ca tim", "ex3")
+
+        fbManager.setMealListCallback { mealList ->
+            this@MainActivity.mealList = mealList
+        }
+
+//        fbManager.writeMeal("secondary1", "abczyx")
     }
 
     private fun changeTabColor(icon: Button, text: TextView) {
