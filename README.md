@@ -1,1 +1,1 @@
-# GDSCHackathon-ZeroMeow-DiabeticDiary
+# Diabetic Diary
