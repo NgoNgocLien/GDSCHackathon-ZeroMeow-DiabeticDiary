@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/blue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    android:paddingBottom="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/food_scanning_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:src="@drawable/ic_lemon"
+            android:padding="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_rounded"
+            android:contentDescription="food scanning button" />
+
+        <ImageButton
+            android:id="@+id/barcode_scanning_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:src="@drawable/ic_barcode"
+            android:padding="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_rounded"
+            android:contentDescription="barcode scanning button" />
+
+        <ImageButton
+            android:id="@+id/ingredient_label_scanning_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:src="@drawable/ic_list"
+            android:padding="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_rounded"
+            android:contentDescription="ingredient label scanning button" />
+
+        <ImageButton
+            android:id="@+id/suggested_recipes_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:src="@drawable/ic_utensil"
+            android:padding="15dp"
+            android:background="@drawable/button_rounded"
+            android:contentDescription="suggested recipes button" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_scan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>

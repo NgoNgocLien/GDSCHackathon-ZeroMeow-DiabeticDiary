@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".FlashlightFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="20dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/color0_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color0" />
+
+            <Button
+                android:id="@+id/color1_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color1"/>
+
+            <Button
+                android:id="@+id/color2_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color2"/>
+
+            <Button
+                android:id="@+id/color3_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color3"/>
+
+            <Button
+                android:id="@+id/color4_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color4"/>
+
+            <Button
+                android:id="@+id/color5_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color5"/>
+
+            <Button
+                android:id="@+id/color6_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color6"/>
+
+            <Button
+                android:id="@+id/color7_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color7"/>
+
+            <Button
+                android:id="@+id/color8_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color8"/>
+
+            <Button
+                android:id="@+id/color9_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color9"/>
+
+            <Button
+                android:id="@+id/color10_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/color10"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/flashlight_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_circle"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/power_button_white" />
+
+    </RelativeLayout>
+
+</FrameLayout>
