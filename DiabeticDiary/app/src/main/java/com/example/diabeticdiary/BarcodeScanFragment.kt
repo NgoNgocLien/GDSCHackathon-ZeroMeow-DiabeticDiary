@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -31,10 +32,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ScanCameraFragment.newInstance] factory method to
+ * Use the [BarcodeScanFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ScanCameraFragment : Fragment(), BarcodeScannerListener {
+class BarcodeScanFragment : Fragment(), BarcodeScannerListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -48,7 +49,7 @@ class ScanCameraFragment : Fragment(), BarcodeScannerListener {
     }
 
     private val CAMERA_REQUEST_CODE = 101
-    private val TAG = "MAIN_ACTIVITY"
+    private val TAG = "SCAN_FRAGMENT"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,14 +64,16 @@ class ScanCameraFragment : Fragment(), BarcodeScannerListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scan_camera, container, false)
+        return inflater.inflate(R.layout.fragment_scan, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan_container, ScanCameraFragment()).addToBackStack(null).commit()
         setupCamera()
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
@@ -95,7 +98,6 @@ class ScanCameraFragment : Fragment(), BarcodeScannerListener {
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
             val preview = Preview.Builder().build().apply {
-//        setSurfaceProvider(viewBinding.pvCameraPreview.surfaceProvider)
                 setSurfaceProvider(requireView().findViewById<PreviewView>(R.id.preview_view).surfaceProvider)
             }
             val imageAnalyzer = ImageAnalysis.Builder().build().apply {
@@ -128,8 +130,21 @@ class ScanCameraFragment : Fragment(), BarcodeScannerListener {
     }
 
     override fun onSuccessScan(result: List<Barcode>) {
-        result.forEachIndexed { index, barcode ->
-            Toast.makeText(requireContext(), "Barcode value: ${barcode.rawValue}", Toast.LENGTH_SHORT).show()
+        var barcode = ""
+        for (bc in result) {
+            Log.d(TAG, "Barcode value: ${bc.rawValue}")
+            barcode = bc.rawValue ?: ""
+            if (barcode.isNotEmpty())
+                break
+        }
+//        result.forEachIndexed { index, barcode ->
+////            Toast.makeText(requireContext(), "Barcode value: ${barcode.rawValue}", Toast.LENGTH_SHORT).show()
+//            Log.d(TAG, "Barcode value: ${barcode.rawValue}")
+//        }
+
+        // TODO: Connect to the database and retrieve the food item with the barcode
+        if (barcode == "512345000107") {
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, SearchResultFragment()).addToBackStack(null).commit()
         }
     }
 
@@ -165,7 +180,7 @@ class ScanCameraFragment : Fragment(), BarcodeScannerListener {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TipCalculatorFragment().apply {
+            BarcodeScanFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

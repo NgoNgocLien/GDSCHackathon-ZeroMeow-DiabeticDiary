@@ -9,8 +9,6 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getDrawable
-import com.example.diabeticdiary.R
-import com.example.fourapps.ScanFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,7 +17,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
+ * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class SearchFragment : Fragment() {
@@ -51,7 +49,7 @@ class SearchFragment : Fragment() {
         var ingredientLabelScanningButton = view.findViewById<ImageButton>(R.id.ingredient_label_scanning_button)
         var suggestedRecipesButton = view.findViewById<ImageButton>(R.id.suggested_recipes_button)
 
-        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan, ScanFragment()).addToBackStack(null).commit()
+        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan, BarcodeScanFragment()).addToBackStack(null).commit()
         changeButtonColor(foodScanningButton)
 
 
@@ -119,12 +117,12 @@ class SearchFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
+         * @return A new instance of fragment SearchFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
+            SearchFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
