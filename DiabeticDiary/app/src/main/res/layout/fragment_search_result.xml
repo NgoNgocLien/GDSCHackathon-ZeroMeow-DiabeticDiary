@@ -21,7 +21,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="50dp"
         android:background="@drawable/button_rounded_active"
-        android:text="Năng lượng: 1000 Kcal\nProtein: 20g\nCarbohydrate: 100g\nFat: 50g\nFiber: 10g\nCholesterol: 100mg\nSodium: 1000mg\nPotassium: 1000mg\nCalcium: 1000mg\nIron: 10mg"
+        android:text="Không có dữ liệu"
         android:textSize="18sp"
         android:textColor="@color/black" />
 

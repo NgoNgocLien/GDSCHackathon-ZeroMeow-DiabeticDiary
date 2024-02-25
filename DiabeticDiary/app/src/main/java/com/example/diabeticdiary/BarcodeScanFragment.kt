@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.diabeticdiary.util.BarcodeScanner
 import com.example.diabeticdiary.util.BarcodeScannerListener
 import com.google.mlkit.vision.barcode.common.Barcode
@@ -144,7 +144,26 @@ class BarcodeScanFragment : Fragment(), BarcodeScannerListener {
 
         // TODO: Connect to the database and retrieve the food item with the barcode
         if (barcode == "512345000107") {
-            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, SearchResultFragment()).addToBackStack(null).commit()
+            val fragment = SearchResultFragment()
+            val args = Bundle()
+            args.putString("nutrition", "Năng lượng: 1000 Kcal\nProtein: 20g\nCarbohydrate: 100g\nFat: 50g\nFiber: 10g\nCholesterol: 100mg\nSodium: 1000mg\nPotassium: 1000mg\nCalcium: 1000mg\nIron: 10mg")
+            fragment.arguments = args
+
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
+        } else if (barcode == "8938505002422") {
+            val fragment = SearchResultFragment()
+            val args = Bundle()
+            args.putString("nutrition", "Năng lượng 82kcal\n Chất béo 0,65g\n Đường bột 17,05g\n Chất đạm 1,83g\n Chất xơ 1,1g\n Kali 0mg\n Canxi 2mg\n Sắt 0,37mg\n Magie 0mg")
+            fragment.arguments = args
+
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
+        } else if (barcode == "8935058970673") {
+            val fragment = SearchResultFragment()
+            val args = Bundle()
+            args.putString("nutrition", "Năng lượng 250kcal\n Chất béo 16g\n Đường bột 0g\n Chất đạm 25g\n Chất xơ 0g\n Kali 330mg\n Canxi 2mg\n Sắt 1,1mg\n Magie 20mg")
+            fragment.arguments = args
+
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
         }
     }
 

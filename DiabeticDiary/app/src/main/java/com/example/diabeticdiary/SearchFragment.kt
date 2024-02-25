@@ -46,11 +46,11 @@ class SearchFragment : Fragment() {
 
         var foodScanningButton = view.findViewById<ImageButton>(R.id.food_scanning_button)
         var barcodeScanningButton = view.findViewById<ImageButton>(R.id.barcode_scanning_button)
-        var ingredientLabelScanningButton = view.findViewById<ImageButton>(R.id.ingredient_label_scanning_button)
+        var nutritionLabelScanningButton = view.findViewById<ImageButton>(R.id.ingredient_label_scanning_button)
         var suggestedRecipesButton = view.findViewById<ImageButton>(R.id.suggested_recipes_button)
 
+        changeButtonColor(barcodeScanningButton)
         (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan, BarcodeScanFragment()).addToBackStack(null).commit()
-        changeButtonColor(foodScanningButton)
 
 
         foodScanningButton.setOnClickListener {
@@ -60,12 +60,14 @@ class SearchFragment : Fragment() {
 
         barcodeScanningButton.setOnClickListener {
             changeButtonColor(barcodeScanningButton)
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan, BarcodeScanFragment()).addToBackStack(null).commit()
             Toast.makeText(requireContext(), "Barcode Scanning", Toast.LENGTH_SHORT).show()
         }
 
-        ingredientLabelScanningButton.setOnClickListener {
-            changeButtonColor(ingredientLabelScanningButton)
-            Toast.makeText(requireContext(), "Ingredient Label Scanning", Toast.LENGTH_SHORT).show()
+        nutritionLabelScanningButton.setOnClickListener {
+            changeButtonColor(nutritionLabelScanningButton)
+            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout_scan, NutritionLabelScanFragment()).addToBackStack(null).commit()
+            Toast.makeText(requireContext(), "Nutrition Label Scanning", Toast.LENGTH_SHORT).show()
         }
 
         suggestedRecipesButton.setOnClickListener {
@@ -77,7 +79,7 @@ class SearchFragment : Fragment() {
     private fun changeButtonColor(btn: ImageButton) {
         var foodScanningButton = requireView().findViewById<ImageButton>(R.id.food_scanning_button)
         var barcodeScanningButton = requireView().findViewById<ImageButton>(R.id.barcode_scanning_button)
-        var ingredientLabelScanningButton = requireView().findViewById<ImageButton>(R.id.ingredient_label_scanning_button)
+        var nutritionLabelScanningButton = requireView().findViewById<ImageButton>(R.id.ingredient_label_scanning_button)
         var suggestedRecipesButton = requireView().findViewById<ImageButton>(R.id.suggested_recipes_button)
 
         foodScanningButton.setImageResource(R.drawable.ic_lemon)
@@ -86,8 +88,8 @@ class SearchFragment : Fragment() {
         barcodeScanningButton.setImageResource(R.drawable.ic_barcode)
         barcodeScanningButton.background = getDrawable(requireContext(), R.drawable.button_rounded)
 
-        ingredientLabelScanningButton.setImageResource(R.drawable.ic_list)
-        ingredientLabelScanningButton.background = getDrawable(requireContext(), R.drawable.button_rounded)
+        nutritionLabelScanningButton.setImageResource(R.drawable.ic_list)
+        nutritionLabelScanningButton.background = getDrawable(requireContext(), R.drawable.button_rounded)
 
         suggestedRecipesButton.setImageResource(R.drawable.ic_utensil)
         suggestedRecipesButton.background = getDrawable(requireContext(), R.drawable.button_rounded)
@@ -99,7 +101,7 @@ class SearchFragment : Fragment() {
             barcodeScanningButton -> {
                 btn.setImageResource(R.drawable.ic_barcode_active)
             }
-            ingredientLabelScanningButton -> {
+            nutritionLabelScanningButton -> {
                 btn.setImageResource(R.drawable.ic_list_active)
             }
             suggestedRecipesButton -> {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.diabeticdiary.R
 
 class MainActivity : AppCompatActivity() {
     private val fbManager = FBManager()
@@ -41,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         gameTextView = findViewById(R.id.game_text)
         profileTextView = findViewById(R.id.profile_text)
 
-        supportFragmentManager.beginTransaction().replace(R.id.frame_layout, LoginFragment()).addToBackStack(null).commit()
-//        changeTabColor(homeButton!!, homeTextView!!)
+        supportFragmentManager.beginTransaction().replace(R.id.frame_layout, SearchFragment()).addToBackStack(null).commit()
+        changeTabColor(searchButton!!, searchTextView!!)
 
         homeButton!!.setOnClickListener {
             changeTabColor(homeButton!!, homeTextView!!)

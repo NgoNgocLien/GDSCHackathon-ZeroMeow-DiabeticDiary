@@ -1,20 +1,18 @@
 package com.example.diabeticdiary
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getDrawable
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "nutrition"
 
 /**
  * A simple [Fragment] subclass.
@@ -23,14 +21,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class SearchResultFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var nutritionText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            nutritionText = it.getString(ARG_PARAM1)
         }
     }
 
@@ -45,9 +41,10 @@ class SearchResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var backButton = view.findViewById<Button>(R.id.back_button)
-        var favoriteButton = view.findViewById<Button>(R.id.favorite_button)
-
+        val backButton = view.findViewById<Button>(R.id.back_button)
+        val favoriteButton = view.findViewById<Button>(R.id.favorite_button)
+        val nutritionTV = view.findViewById<TextView>(R.id.nutrition_text_view)
+        nutritionTV.text = nutritionText
 
         backButton.setOnClickListener {
             (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.frame_layout, SearchFragment()).addToBackStack(null).commit()
@@ -64,16 +61,14 @@ class SearchResultFragment : Fragment() {
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment SearchResultFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             SearchResultFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }
